@@ -1,3 +1,6 @@
+import plus from './../../assets/plus.svg'
+import minus from './../../assets/minus.svg'
+
 export const User = ({
 	id,
 	fisrt_name,
@@ -25,7 +28,7 @@ export const User = ({
 		<img
 			onClick={() => onClickInvite(id)}
 			className='action'
-			src={`/assets/${isInvited ? 'minus' : 'plus'}.svg`}
+			src={isInvited ? minus : plus}
 			alt='Action'
 		/>
 	</li>
