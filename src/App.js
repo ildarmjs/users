@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './App.scss'
+import { Success } from './components/Success'
+import { Users } from './components/Users'
+import { useUsers } from './hooks/useUser'
+
+// Тут список пользователей: https://reqres.in/api/users
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	const {
+		onClickInvite,
+		invites,
+		setInvites,
+		onClickSendInvites,
+		setSuccess,
+		success,
+		onChangeSeacrhValue,
+		searchValue,
+		setSearchValue,
+		users,
+		setUsers,
+		isLoading,
+		setLoading,
+	} = useUsers()
+
+	return (
+		<div className='App'>
+			{success ? (
+				<Success count={invites.length} />
+			) : (
+				<Users
+					invites={invites}
+					onClickInvite={onClickInvite}
+					searchValue={searchValue}
+					onChangeSeacrhValue={onChangeSeacrhValue}
+					items={users}
+					isLoading={isLoading}
+					onClickSendInvites={onClickSendInvites}
+				/>
+			)}
+		</div>
+	)
 }
 
-export default App;
+export default App
